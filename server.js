@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("./config/db");
+// const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
@@ -9,6 +9,10 @@ const colors = require("colors");
 const path = require("path");
 
 dotenv.config();
+ mongoose.connect(
+   "mongodb+srv://sumit1412:SUMIT141201@cluster0.hc7sl9w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+ );
+ console.log(`MongoDB Connected:`.cyan.underline);
 connectDB();
 const app = express();
 
@@ -44,7 +48,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
+const PORT = 10000;
 
 const server = app.listen(
   PORT,
